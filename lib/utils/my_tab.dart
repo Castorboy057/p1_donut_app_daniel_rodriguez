@@ -8,8 +8,12 @@ class MyTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tab(
       child: Container(
-        color: Colors.grey[600],
-        child: Image.asset(iconPath), //contariner
+        padding: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Image.asset(iconPath,    color: Colors.grey[600],), //contariner
       ),
     );   
   }

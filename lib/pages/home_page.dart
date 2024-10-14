@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../utils/my_tab.dart';
+import '../Tab/donut_tab.dart';
+import '../Tab/pancake_tab.dart';
+import '../Tab/pizza_tab.dart';
+import '../Tab/smoothie_tab.dart';
+import '../Tab/burger_tab.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return  DefaultTabController( 
-      length: 5, 
+      length: myTabs.length, 
       child: Scaffold(
         appBar: AppBar(
           backgroundColor:  Colors.transparent,
@@ -48,14 +54,21 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.only(left: 30.0),
           child: Row(
             children: [
-              Text("i want to ", style: TextStyle(fontSize: 24), ),
+              Text("I want to ", style: TextStyle(fontSize: 24), ),
               Text("Eat", style :TextStyle(fontSize: 24, fontWeight: FontWeight.bold, decoration: TextDecoration.underline),),
           ],
           ),
         ),
         //tab bar
-        TabBar(tabs:myTabs)
+        TabBar(tabs:myTabs),
         //tab bar view
+        const Expanded(child: TabBarView (children: [
+          DonutTab(),
+          BurgerTab(),
+          SmoothieTab(),
+          PancakeTab(),
+          PizzaTab()
+        ]))
        ],),
        ),
     ); //Icon       
