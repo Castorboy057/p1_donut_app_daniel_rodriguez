@@ -1,37 +1,38 @@
 import 'package:flutter/material.dart';
 
-class DonutTile extends StatelessWidget {
-final String donutFlavor;
-final String donutPrice;
-final dynamic donutColor;
+class PancakeTile extends StatelessWidget {
+ final String pancakesFlavor;
+final String pancakesPrice;
+final dynamic pancakesColor;
 final String imageName;
+final VoidCallback onAddToCart; // Callback para agregar al carrito
+  final VoidCallback onFavoriteToggle;
 
-  const DonutTile({super.key, required this.donutFlavor, required this.donutPrice, this.donutColor, required this.imageName});
+  const PancakeTile({super.key, required this.pancakesFlavor, required this.pancakesPrice, this.pancakesColor, required this.imageName, required this.onAddToCart, required this.onFavoriteToggle,});
   
-  get fontSize => null;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12),
       child: Container
-      (decoration: BoxDecoration(color: donutColor[100], borderRadius: BorderRadius.circular(24)),
+      (decoration: BoxDecoration(color: pancakesColor[100], borderRadius: BorderRadius.circular(24)),
       child: Column(children: [
         Row(mainAxisAlignment: MainAxisAlignment. end,
           children: [
             Container(
               decoration: BoxDecoration(
-                color: donutColor [200], 
+                color: pancakesColor [200], 
                 borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(25),
                   bottomLeft: Radius.circular(25))),
           padding: 
           const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
-        child: Text("\$$donutPrice",
+        child: Text("\$$pancakesPrice",
         style: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.bold,
-          color: donutColor[800])
+          color: pancakesColor[800])
         )
         )
         ]),
@@ -42,7 +43,7 @@ final String imageName;
           child: Image.asset(imageName),
         ),
         //Donut flavor text
-        Text(donutFlavor,
+        Text(pancakesFlavor,
         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
         const Text(
           "Dunkin's", style: TextStyle(color: Colors.grey),),
@@ -50,7 +51,7 @@ final String imageName;
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Icon(Icons.favorite, color: Colors.pink[400]),
-              Icon(Icons.add, color: Colors.grey[800])
+              IconButton(icon: const Icon(Icons.add), onPressed: onAddToCart, color: Colors.grey[800],)
               
           ],
           )

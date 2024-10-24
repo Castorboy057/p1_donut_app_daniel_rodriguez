@@ -1,61 +1,82 @@
 import 'package:flutter/material.dart';
 
 class DonutTile extends StatelessWidget {
-final String donutFlavor;
-final String donutPrice;
-final dynamic donutColor;
-final String imageName;
+  final String donutFlavor;
+  final String donutPrice;
+  final dynamic donutColor;
+  final String imageName;
+  final VoidCallback onAddToCart; // Callback para agregar al carrito
+  final VoidCallback onFavoriteToggle; // Callback para cambiar el estado del favorito
 
-  const DonutTile({super.key, required this.donutFlavor, required this.donutPrice, this.donutColor, required this.imageName});
-  
-  get fontSize => null;
+  // Constructor para recibir los valores
+  const DonutTile({
+    super.key, 
+    required this.donutFlavor,
+    required this.donutPrice,
+    required this.donutColor,
+    required this.imageName,
+    required this.onAddToCart,
+    required this.onFavoriteToggle, // Para manejar el icono de favorito
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12),
-      child: Container
-      (decoration: BoxDecoration(color: donutColor[100], borderRadius: BorderRadius.circular(24)),
-      child: Column(children: [
-        Row(mainAxisAlignment: MainAxisAlignment. end,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: donutColor [200], 
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(25),
-                  bottomLeft: Radius.circular(25))),
-          padding: 
-          const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
-        child: Text("\$$donutPrice",
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: donutColor[800])
-        )
-        )
-        ]),
-        //Donut Picture
-        Padding(
-          padding: 
-          const EdgeInsets.symmetric(horizontal: 36, vertical: 12),
-          child: Image.asset(imageName),
-        ),
-        //Donut flavor text
-        Text(donutFlavor,
-        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-        const Text(
-          "Dunkin's", style: TextStyle(color: Colors.grey),),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Icon(Icons.favorite, color: Colors.pink[400]),
-              Icon(Icons.add, color: Colors.grey[800])
-              
-          ],
-          )
-        ],),
+      child: Container(
+        decoration: BoxDecoration(color: donutColor [100], borderRadius: BorderRadius.circular(24)),
+      child: Column(
+        children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [Container(
+            decoration: BoxDecoration(color: donutColor[200], 
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(24), 
+              bottomLeft: Radius.circular(24))),
+            padding: 
+            const EdgeInsets.symmetric(vertical: 8,horizontal: 18),
+            child: Text("\$$donutPrice",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: donutColor[800]
+                ),),
+          )],),
+              //Donut picture
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                horizontal:24,
+                vertical:12),
+                child: Image.asset(imageName),
+              ),
+              //Donut flavor Tex
+              Text(donutFlavor,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold
+              ),),
+              Text("Dukin's",
+              style: TextStyle(color: Colors.grey[600])),
+              ////Love icon + add button
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    //love icon
+                    Icon(Icons.favorite, color: Colors.pink[400],),
+                    //plus Button
+                    IconButton(icon: const Icon(Icons.add), onPressed: onAddToCart, color: Colors.grey[800],)
+                  ],
+                ),
+              )
+            ],
       ),
-      );
+      ),
+    );
   }
 }
+
+
+

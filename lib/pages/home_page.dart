@@ -35,15 +35,14 @@ class _HomePageState extends State<HomePage> {
     //pancake tab
     const MyTab(
       iconPath: "lib/icons/pancakes.png",
-      label: "Pancakes",
+      label: "pancakes",
     ),
     //pizza tab
     const MyTab(
       iconPath: "lib/icons/pizza.png",
-      label: "Pizza",
+      label: "pizza",
     )
   ];
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -89,13 +88,13 @@ class _HomePageState extends State<HomePage> {
             //Tab bar
             TabBar(tabs: myTabs),
             //Tab bar view
-            const Expanded(
-                child: TabBarView(children: [
-              DonutTab(),
-              BurgerTab(),
-              SmoothieTab(),
-              PancakeTab(),
-              PizzaTab()
+            Expanded(
+              child: TabBarView(children: [
+                DonutTab(),
+                BurgerTab(),
+                SmoothieTab(),
+                PancakeTab(),
+                PizzaTab(),
             ]))
 
             //
